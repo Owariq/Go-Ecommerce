@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package product_v1;
+
+option go_package = "github.com/Owariq/Go-Ecommerce/product-service/pkg/product_v1;product_v1";
+
+import "google/protobuf/empty.proto";
+
+service ProductV1 {
+    rpc Create  (CreateRequest)   returns  (CreateResponse);
+    rpc Get     (GetRequest)      returns  (GetResponse);
+    rpc Update  (UpdateRequest)   returns  (UpdateResponse);
+    rpc Delete  (DeleteRequest)   returns  (DeleteResponse);
+    rpc List    (google.protobuf.Empty)    returns  (ListResponse);
+}
+
+message Product {
+    int64   id = 1;
+    string  name = 2;
+    string  category = 3;
+    double  price = 4;
+    int64   inventory = 5;
+}
+
+message CreateRequest {
+    Product product = 1;
+}
+
+message CreateResponse {
+    int64 id = 1;
+}
+
+message GetRequest {
+    int64 id = 1;
+}
+
+message GetResponse {
+    Product product = 1; 
+}
+
+message UpdateRequest {
+    Product product = 1;
+}
+
+message UpdateResponse {
+    int64 id = 1;
+}
+
+message DeleteRequest {
+    int64 id = 1;
+}
+
+message DeleteResponse {
+    int64 id = 1;
+}
+
+message ListResponse {
+    repeated Product products = 1;
+}
