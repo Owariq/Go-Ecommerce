@@ -1,4 +1,3 @@
-include .env
 
 install-deps:
 	go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.28.1
@@ -15,16 +14,6 @@ generate:
 
 generate-product-api:
 	protoc --proto_path api\ \
-	--go_out=pkg\product_v1 --go_opt=paths=source_relative \
-	--go-grpc_out=pkg\product_v1 --go-grpc_opt=paths=source_relative \
-	api\product.proto
-	
-
-migration-status:
-	goose -dir ${MIGRATION_DIR} postgres ${PG_DSN} status -v
-
-migration-up:
-	goose -dir ${MIGRATION_DIR} postgres ${PG_DSN} up -v
-
-migration-down:
-	goose -dir ${MIGRATION_DIR} postgres ${PG_DSN} down -v
+	--go_out=pkg\cart_v1 --go_opt=paths=source_relative \
+	--go-grpc_out=pkg\cart_v1 --go-grpc_opt=paths=source_relative \
+	api\cart.proto
